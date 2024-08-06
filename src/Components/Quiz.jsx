@@ -5,12 +5,12 @@ export default function Quiz() {
   const [current, setCurrent] = useState(0);
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100">
-      <Box current={current} next={setCurrent} />
+      <Box current={current} setCurrent={setCurrent} next={setCurrent} />
     </div>
   );
 }
 
-const Box = ({ current, next }) => {
+const Box = ({ current, setCurrent, next }) => {
   const { quizzes, correct, setCorrect, setExit } = useContext(QuizContext);
   const [ans, setAns] = useState("");
 
@@ -24,6 +24,12 @@ const Box = ({ current, next }) => {
     } else {
       next(current + 1);
     }
+  };
+
+  const resetHandler = () => {
+    setCurrent(0);
+    setAns("");
+    setCorrect(0);
   };
 
   return (
@@ -70,7 +76,7 @@ const Box = ({ current, next }) => {
       <div className="flex justify-between mt-4">
         <button
           className="bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded"
-          onClick={() => setAns("")}
+          onClick={resetHandler}
         >
           Reset
         </button>
