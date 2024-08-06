@@ -3,21 +3,24 @@ import { QuizContext } from "../Context/QuizHolder";
 
 export default function Result() {
   const { correct, setExit, setStart, quizzes } = useContext(QuizContext);
+
   const playAgain = () => {
     setExit(false);
     setStart(false);
   };
+
   return (
-    <div className="w-full h-screen flex justify-center items-center">
-      <div className="w-[40%] border shadow-lg rounded-md overflow-hidden text-center">
-        <h2 className="text-2xl p-3 my-2">
-          {correct} are correct out of {quizzes.length}
-        </h2>
+    <div className="flex justify-center items-center min-h-screen bg-gray-100">
+      <div className="w-full max-w-md mx-auto bg-white rounded-lg shadow-md p-6 text-center">
+        <h2 className="text-2xl font-bold mb-4">Quiz Results</h2>
+        <p className="text-lg mb-4">
+          You scored {correct} out of {quizzes.length}
+        </p>
         <button
           onClick={playAgain}
-          className="border border-orange-500 p-3 text-2xl rounded"
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
         >
-          Play again
+          Play Again
         </button>
       </div>
     </div>
